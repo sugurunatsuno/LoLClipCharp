@@ -42,7 +42,7 @@ $ dotnet run --project LoLClip
 ## コード構成
 
 - `Program.cs`: エントリーポイント。設定読み込みとメインループを実装
-- `GameAsyncs.cs`: OBS 連携やゲーム状態取得などの非同期処理
+- `GameService.cs`: OBS 連携やゲーム状態取得などの非同期処理
 - `CustomEventManager.cs`: イベント検知ロジックとハンドラ登録
 - `AppConfig.cs`: 設定項目の定義
 

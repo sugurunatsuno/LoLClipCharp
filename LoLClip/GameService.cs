@@ -1,8 +1,8 @@
-class GameAsyncs
+class GameService
 {
     private readonly AppConfig _config;
 
-    public GameAsyncs(AppConfig config)
+    public GameService(AppConfig config)
     {
         _config = config;
     }
