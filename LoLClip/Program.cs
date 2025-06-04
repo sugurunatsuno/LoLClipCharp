@@ -44,6 +44,8 @@ while (true)
 {
     var myName = await asyncs.GetSummonerNameAsync(logger, http);
     logger.LogInformation("自分のサモナーネーム: {MyName}", myName);
+    history.Clear();
+    customManager.Reset();
 
     // ゲーム進行中ループ
     while (true)
@@ -73,6 +75,9 @@ while (true)
 class CustomEventManager
 {
     private readonly Dictionary<string, Func<JsonElement, Task>> _handlers = new();
+    private int _lastEventId = -1;
+
+    public void Reset() => _lastEventId = -1;
 
     public void Register(string eventName, Func<JsonElement, Task> handler)
         => _handlers[eventName] = handler;
@@ -95,6 +100,13 @@ class CustomEventManager
         {
             foreach (var ev in eventsArr.EnumerateArray())
             {
+                if (!ev.TryGetProperty("EventID", out var idProp))
+                    continue;
+                var id = idProp.GetInt32();
+                if (id <= _lastEventId)
+                    continue;
+                _lastEventId = id;
+
                 if (ev.TryGetProperty("EventName", out var nameProp))
                 {
                     var eventName = nameProp.GetString();
