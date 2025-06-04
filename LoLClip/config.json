@@ -1,0 +1,10 @@
+{
+  "AllGameDataUrl": "https://127.0.0.1:2999/liveclientdata/allgamedata",
+  "ObsWebSocketUrl": "ws://localhost:4455",
+  "HistoryLimit": 10,
+  "MainLoopDelayMs": 1000,
+  "GameStartDelayMs": 2000,
+  "GameEndDelayMs": 2000,
+  "TeamfightDeathThreshold": 2,
+  "ObsBufferSize": 4096
+}
